@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Velkommen!</title>
+</head>
+<script>
+function test() {
+	x = document.getElementById("usernameText");
+	alert(x.value);
+}
+</script>
+
+<form action="/action_page.php">
+  Username: <input type="text" name="fname" id="usernameText"><br>
+  Password: <input type="text" name="lname" id="passwordText"><br>
+  <input type="button" value="Login" onclick="test();">
+  </form>
+<body>
+
+</body>
+</html>
