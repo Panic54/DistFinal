@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package brugerautorisation.server;
+package server;
 
-import brugerautorisation.data.Diverse;
-import brugerautorisation.data.Bruger;
-import brugerautorisation.server.Serialisering;
+import data.Diverse;
+import data.Bruger;
+import server.Serialisering;
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Files;

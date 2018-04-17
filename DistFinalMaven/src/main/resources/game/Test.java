@@ -1,8 +1,8 @@
-package game;
 
-import brugerautorisation.transport.rmi.Brugeradmin;
-import brugerautorisation.transport.rmi.BrugeradminImpl;
-import brugerautorisation.transport.rmi.Brugeradminklient;
+
+import transport.rmi.Brugeradmin;
+import transport.rmi.BrugeradminImpl;
+import transport.rmi.Brugeradminklient;
 import java.rmi.Naming;
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package brugerautorisation.data;
+package data;
 import java.io.*;
 import java.util.HashMap;
 public class Bruger implements Serializable

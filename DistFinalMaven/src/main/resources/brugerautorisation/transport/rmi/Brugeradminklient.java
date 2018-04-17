@@ -1,8 +1,7 @@
-package brugerautorisation.transport.rmi;
-
-import brugerautorisation.data.Diverse;
-import brugerautorisation.data.Bruger;
-import brugerautorisation.data.DataTyper;
+package transport.rmi;
+import data.Bruger;
+import data.DataTyper;
+import data.Diverse;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -12,11 +11,14 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import transport.rmi.Brugeradmin;
+
+
 public class Brugeradminklient {
 
     public Brugeradmin ba;
-    DataTyper d = new DataTyper(); 
-
+    DataTyper d = new DataTyper("hejs","heks"); 
+    
    /* public Brugeradminklient() {   	
    
     } */
@@ -54,9 +56,11 @@ public class Brugeradminklient {
                  
 	} 
 */
-    public boolean login(Datatyper d) {
+    //@POST
+   // @Consumes(MediaType.APPLICATION_JSON)
+    public boolean login() {
         Bruger b;
-        
+       
         try {
             ba = (Brugeradmin) Naming.lookup("rmi://javabog.dk/brugeradmin");
         } catch (NotBoundException ex) {
@@ -71,7 +75,7 @@ public class Brugeradminklient {
         }
 
         try {
-            b = ba.hentBruger(d.getUsername, d.getPassword);
+            b = ba.hentBruger("hej", "hej indsæt username og password her");
             System.out.println(b.adgangskode);
             System.out.println("Fik bruger = " + b);
             System.out.println("Data: " + Diverse.toString(b));
