@@ -1,5 +1,4 @@
-
-
+package game;
 import transport.rmi.Brugeradmin;
 import transport.rmi.BrugeradminImpl;
 import transport.rmi.Brugeradminklient;

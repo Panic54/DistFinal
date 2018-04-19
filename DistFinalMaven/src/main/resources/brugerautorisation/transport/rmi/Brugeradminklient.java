@@ -3,6 +3,7 @@ import data.Bruger;
 import data.DataTyper;
 import data.Diverse;
 
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -11,14 +12,22 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import transport.rmi.Brugeradmin;
 
 
-public class Brugeradminklient {
+@Path("login")
+public class Brugeradminklient implements Serializable {
 
-    public Brugeradmin ba;
-    DataTyper d = new DataTyper("hejs","heks"); 
-    
+    public Brugeradmin ba; 
    /* public Brugeradminklient() {   	
    
     } */
@@ -57,8 +66,11 @@ public class Brugeradminklient {
 	} 
 */
     //@POST
-   // @Consumes(MediaType.APPLICATION_JSON)
-    public boolean login() {
+   //@Consumes(MediaType.APPLICATION_JSON)
+    
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public boolean login(DataTyper d) {
         Bruger b;
        
         try {
@@ -75,7 +87,7 @@ public class Brugeradminklient {
         }
 
         try {
-            b = ba.hentBruger("hej", "hej indsæt username og password her");
+            b = ba.hentBruger(d.getUsername(), d.getPassword());
             System.out.println(b.adgangskode);
             System.out.println("Fik bruger = " + b);
             System.out.println("Data: " + Diverse.toString(b));
@@ -86,4 +98,5 @@ public class Brugeradminklient {
 
         return true;
     }
+    
 }

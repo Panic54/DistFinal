@@ -2,9 +2,8 @@ package data;
 public class DataTyper {
 	
 String username, password;
-	public DataTyper(String username, String password) {
-		this.username = username;
-		this.password = password;		
+	public DataTyper() {
+	
 	}
 	
 	public String getUsername() {
