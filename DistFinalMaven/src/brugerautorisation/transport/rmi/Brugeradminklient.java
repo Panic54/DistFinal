@@ -1,42 +1,35 @@
-package transport.rmi;
-import data.Bruger;
-import data.DataTyper;
-import data.Diverse;
+package brugerautorisation.transport.rmi;
 
-import java.io.Serializable;
+import brugerautorisation.data.Diverse;
+import brugerautorisation.transport.rmi.Brugeradmin;
+import brugerautorisation.transport.rmi.Brugeradminklient;
+
+import brugerautorisation.data.Bruger;
+import brugerautorisation.data.DataTyper;
+
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+@Path("/login")
+public class Brugeradminklient {
 
-import transport.rmi.Brugeradmin;
+    public Brugeradmin ba;
 
+  //  public Brugeradminklient() {
+    //}
 
-@Path("login")
-public class Brugeradminklient implements Serializable {
-
-    public Brugeradmin ba; 
-   /* public Brugeradminklient() {   	
-   
-    } */
-
-   
-    
-	/*public static void main(String[] arg) throws Exception {
+    /*
+	public static void main(String[] arg) throws Exception {
 //		Brugeradmin ba =(Brugeradmin) Naming.lookup("rmi://localhost/brugeradmin");
-				
 		
                 Brugeradmin ba = (Brugeradmin) Naming.lookup("rmi://javabog.dk/brugeradmin");
 
@@ -63,16 +56,15 @@ public class Brugeradminklient implements Serializable {
 		String webside = (String) ba.getEkstraFelt("s123456", "kode1xyz", "webside");
 		System.out.println("Brugerens webside er: " + webside);
                  
-	} 
-*/
-    //@POST
-   //@Consumes(MediaType.APPLICATION_JSON)
-    
+	} */
+    @Path("/test")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public boolean login(DataTyper d) {
         Bruger b;
-       
+        String username = "s154102", password = "abc123";
+        System.out.println(d.getUsername() + " " + d.getPassword());
+        /*
         try {
             ba = (Brugeradmin) Naming.lookup("rmi://javabog.dk/brugeradmin");
         } catch (NotBoundException ex) {
@@ -95,8 +87,7 @@ public class Brugeradminklient implements Serializable {
             Logger.getLogger(Brugeradminklient.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
-
+*/
         return true;
     }
-    
 }

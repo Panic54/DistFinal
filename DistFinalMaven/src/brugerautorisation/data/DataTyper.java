@@ -1,4 +1,5 @@
-package data;
+package brugerautorisation.data;
+
 public class DataTyper {
 	
 String username, password;
@@ -18,5 +19,4 @@ String username, password;
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
 }

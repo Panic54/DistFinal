@@ -6,45 +6,13 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript" src="jquery.serialize-object.min.js"></script>
-<script>
-	$(document).ready(
-			
-			//var obj = {"username":"s154102","password":"abc123"};
-			//var myJSON = JSON.stringify(obj);
-			
-			function() {
-				$("button").click(
-						function() {
-							var data = $('#formID').serializeJSON();
-							alert(data);
-							//alert("hej");
-							//e.preventDefault();
-							$.ajax({
-								type : "POST",
-								url : "rest/login",								
-								data     :  $('#formID').serializeJSON(),
-								dataType : "application/json",
-								success : function(data) {
-									//$("#word").text(result.word);
-									//$("#word").text(result);
-									alert(data);
-								},
-								error : function(xhr) {
-									alert('an error occured ' + xhr.status
-											+ ' status text ' + xhr.statusText
-											+ ' ' + xhr.responseText);
-								}
-							});
-						});
-			});
-</script>
+<script type= "text/javascript" src="Test.js"></script>
 </head>
 <body>
-
 	<form id="formID">
 		Username: <input type="text" name="username" id="usernameText"> <br>
 		Password: <input type="text" name="password" id="passwordText"> <br>
-		<button>Login</button>
+		<input type="submit" value="Login" id="btns">
 	</form>
 </body>
 </html>

@@ -1,5 +1,3 @@
-package server;
-
 /*
 Idriftsættelse
 cd /home/j/DistribueredeSystemer/DistribueredeSystemer
@@ -13,12 +11,15 @@ screen -S dist java -jar "DistribueredeSystemer.jar"
 screen -d -r
 
  */
+package brugerautorisation.server;
+
+import brugerautorisation.data.Diverse;
+import brugerautorisation.data.Bruger;
 import java.io.IOException;
+import java.io.StringReader;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import data.Bruger;
-import data.Diverse;
 
 /**
  * Hovedprogrammet på serveren
@@ -27,6 +28,7 @@ import data.Diverse;
 public class BenytBrugerdatabase {
 
 	public static void main(String[] args) throws IOException {
+
 		Scanner scanner = new Scanner(System.in); // opret scanner-objekt
 
 		System.out.println("**********************************************");
@@ -46,7 +48,7 @@ public class BenytBrugerdatabase {
 		Brugerdatabase db = Brugerdatabase.getInstans();
 		System.out.println("\nDer er "+db.brugere.size()+" brugere i databasen");
 
-		transport.rmi.Brugeradminserver.main(null);
+		brugerautorisation.transport.rmi.Brugeradminserver.main(null);
 		//brugerautorisation.transport.soap.Brugeradminserver.main(null);
 
 		while (true) try {

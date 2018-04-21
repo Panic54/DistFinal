@@ -1,7 +1,7 @@
-package transport.rmi;
-import data.Bruger;
-import server.Brugerdatabase;
-import server.SendMail;
+package brugerautorisation.transport.rmi;
+import brugerautorisation.data.Bruger;
+import brugerautorisation.server.Brugerdatabase;
+import brugerautorisation.server.SendMail;
 import java.rmi.server.UnicastRemoteObject;
 
 public class BrugeradminImpl extends UnicastRemoteObject implements Brugeradmin

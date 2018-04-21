@@ -1,4 +1,4 @@
-package server;
+package brugerautorisation.server;
 import java.io.*;
 public class Serialisering
 {
