@@ -18,6 +18,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("/login")
 public class Brugeradminklient {
@@ -60,22 +61,21 @@ public class Brugeradminklient {
     @Path("/test")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public boolean login(DataTyper d) {
+    public Response login(DataTyper d) {
         Bruger b;
         String username = "s154102", password = "abc123";
         System.out.println(d.getUsername() + " " + d.getPassword());
-        /*
         try {
             ba = (Brugeradmin) Naming.lookup("rmi://javabog.dk/brugeradmin");
         } catch (NotBoundException ex) {
             Logger.getLogger(Brugeradminklient.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
+            return Response.status(200).build();
         } catch (MalformedURLException ex) {
             Logger.getLogger(Brugeradminklient.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
+            return Response.status(200).build();
         } catch (RemoteException ex) {
             Logger.getLogger(Brugeradminklient.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
+            return Response.status(200).build();
         }
 
         try {
@@ -85,9 +85,8 @@ public class Brugeradminklient {
             System.out.println("Data: " + Diverse.toString(b));
         } catch (RemoteException ex) {
             Logger.getLogger(Brugeradminklient.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
+            return Response.status(200).build();
         }
-*/
-        return true;
+        return Response.status(200).build();
     }
 }
