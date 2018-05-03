@@ -9,18 +9,18 @@ $(document).ready(function() {
 
 		var data = $("#loginForm").serializeObject();
 		
-		//alert("Name: " + data.username + " Password: " + data.password);
+		alert("Name: " + data.username + " Password: " + data.password);
 			
 		$.ajax({
-			url: "rest/rest2/javabog",
+			url: "rest/login/test",
 			data: JSON.stringify(data),
 			contentType: "application/json",
 			method: 'POST',
 			success: function(loginOk){
-				//window.location.replace("https://www.google.com/?gws_rd=ssl");
+				
 				alert(loginOk);
                             if(loginOk){
-                                window.location.replace("/DistFinalMaven/DineTing.html");                                
+                                window.location.replace("/DistFinalMaven/Salg.html");                                
                             }else{
                                 $('.login-error').show();
                             }
