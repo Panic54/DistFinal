@@ -4,41 +4,41 @@ import java.util.ArrayList;
 
 public class DTO {
 
-	String names;
-	String items;
-	int prices;
+	private String name;
+	private String item;
+	private int price;
 
-	DTO(String names, String items, int prices){
+	DTO(String name, String item, int price){
 
-		this.names = names;
-		this.items = items;
-		this.prices = prices;
+		this.name = name;
+		this.item = item;
+		this.price = price;
 
 	}
 
-	public String getNames(){
-		return names;
+	public String getName(){
+		return name;
 	}
 
-	public void setNames(String names){
-		this.names = names;
+	public void setName(String name){
+		this.name = name;
 	}
 
 
-	public String getItems(){
-		return items;
+	public String getItem(){
+		return item;
 	}
 
-	public void setItems(String items){
-		this.items = items;
+	public void setItem(String item){
+		this.item = item;
 	}
 
-	public int getPrices(){
-		return prices;
+	public int getPrice(){
+		return price;
 	}
 
-	public void setPrices(int prices){
-		this.prices = prices;
+	public void setPrice(int price){
+		this.price = price;
 	}
 
 }
