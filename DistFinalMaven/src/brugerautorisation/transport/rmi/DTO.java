@@ -8,12 +8,7 @@ public class DTO {
 	private String item;
 	private int price;
 
-	DTO(String name, String item, int price){
-
-		this.name = name;
-		this.item = item;
-		this.price = price;
-
+	DTO(){
 	}
 
 	public String getName(){

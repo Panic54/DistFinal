@@ -17,10 +17,8 @@ $(document).ready(function() {
 			contentType: "application/json",
 			method: 'POST',
 			success: function(loginOk){
-				//window.location.replace("https://www.google.com/?gws_rd=ssl");
-				alert(loginOk);
                             if(loginOk){
-                                window.location.replace("/DistFinalMaven/DineTing.html");                                
+                                window.location.replace("/DistFinalMaven/Salg.html");                                
                             }else{
                                 $('.login-error').show();
                             }

@@ -5,9 +5,10 @@
 	<title>Dine Ting</title>
 
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
-	<link rel="stylesheet" href="DineTing.css">
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="DineTing.js"></script>
+	<link rel="stylesheet" href="Salg.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="jquery.serialize-object.min.js"></script>
+	<script type="text/javascript" src="Salg.js"></script>
 	
 </head>
 <body>
@@ -26,6 +27,16 @@
 			<li>Tea</li>
 			<li>Milk</li>
 		</ul>
+		<form id="itemform">
+		<h2>Post item</h2>
+			<input type="text" placeholder="Name" class="w3-input w3-border" name="name">
+			<br>
+			<input type="text" placeholder="Item name" class="w3-input w3-border" name="item">
+			<br>
+			<input type="text" placeholder="price" class="w3-input w3-border" name="price">
+			<br>
+			<input type="submit" value="Sell Item" class="w3-input w3-border w3-blue" id="btn">
+		</form>
 	</div>
 
 </body>
