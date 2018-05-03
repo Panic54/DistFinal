@@ -9,37 +9,26 @@ $(document).ready(function() {
 
 		var data = $("#loginForm").serializeObject();
 		
-		alert("Name: " + data.username + " Password: " + data.password);
+		//alert("Name: " + data.username + " Password: " + data.password);
 			
 		$.ajax({
 			url: "rest/login/test",
 			data: JSON.stringify(data),
 			contentType: "application/json",
 			method: 'POST',
-			success: function(resp){
-				alert(resp);
-				window.location.replace("http://localhost:8080/DistFinalMaven/DineTing.html");
-				//Giv token...
-				//Skift html side...
+			success: function(loginOk){
+				//window.location.replace("https://www.google.com/?gws_rd=ssl");
+				alert(loginOk);
+                            if(loginOk){
+                                window.location.replace("/DistFinalMaven/DineTing.html");                                
+                            }else{
+                                $('.login-error').show();
+                            }
 			},
 			error: function(resp){
-				alert("Fejl: " + resp);
+                            $('.login-error').show();
 			}
-		}) 
-		
-		//Det nedenunder virkede...
-		/*
-		$.ajax({
-			url: "rest/test",
-			method: "GET",
-			success: function(result) {
-				alert(result);
-			},
-			error: function(result) {
-				alert(result);
-			}
-		}) */
-		
+		});
+                return false;
 	});
-	
 });

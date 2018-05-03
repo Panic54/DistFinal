@@ -2,7 +2,13 @@ body {
 	background-color: #e6e6e6;
 }
 
-div {
-	width: 20%;
+.w3-container {
+	width: 40%;
 	margin: auto;
+}
+.login-error{
+    background: #ffaa0096;
+    display: none;
+    padding: 10px;
+    margin: 10px 0 0;
 }
