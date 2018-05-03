@@ -8,11 +8,8 @@ $(document).ready(function() {
 		//event.preventDefault();
 
 		var data = $("#loginForm").serializeObject();
-		
-		alert("Name: " + data.username + " Password: " + data.password);
-			
 		$.ajax({
-			url: "rest/login/test",
+			url: "rest/rest2/javabog",
 			data: JSON.stringify(data),
 			contentType: "application/json",
 			method: 'POST',

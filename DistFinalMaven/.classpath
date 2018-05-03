@@ -11,7 +11,6 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/madsfinnerup/Downloads/javax.ws.rs-api-2.0.jar"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-java-8.0.11.jar"/>
 	<classpathentry including="**/*.java" kind="src" output="target/classes" path="src">
 		<attributes>
@@ -24,5 +23,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="src/javax.ws.rs-api-2.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
