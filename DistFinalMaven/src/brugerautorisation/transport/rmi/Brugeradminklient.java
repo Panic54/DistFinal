@@ -20,7 +20,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("rest2")
+@Path("/login")
 public class Brugeradminklient {
 
     public Brugeradmin ba;
@@ -58,7 +58,7 @@ public class Brugeradminklient {
 		System.out.println("Brugerens webside er: " + webside);
                  
 	} */
-    @Path("javabog")
+    @Path("/test")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public boolean login(DataTyper d) {
@@ -90,25 +90,30 @@ public class Brugeradminklient {
         return true;
     }
     
-    @Path("buy")
+    
+    @Path("/buy")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public boolean buy(DTO d) {
     	DTO dto = d;
-    		
+
     	System.out.println("Du k�bte: " + d.getName());
+
     	
     	return true;
     }
     
-    @Path("sell")
+    @Path("/sell")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public boolean sell(DTO d) {
     	//DTO dto = d;
     	
     	System.out.println("Du solgte: " + d.getName() + " til prisen: " + d.getPrice());
+
     	
     	return true;
     }
+    
+    
 }

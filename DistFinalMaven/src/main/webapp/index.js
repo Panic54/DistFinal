@@ -9,10 +9,10 @@ $(document).ready(function() {
 
 		var data = $("#loginForm").serializeObject();
 		
-		//alert("Name: " + data.username + " Password: " + data.password);
+		alert("Name: " + data.username + " Password: " + data.password);
 			
 		$.ajax({
-			url: "rest/rest2/javabog",
+			url: "rest/login/test",
 			data: JSON.stringify(data),
 			contentType: "application/json",
 			method: 'POST',
