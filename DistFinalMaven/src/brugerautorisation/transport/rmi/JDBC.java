@@ -31,12 +31,12 @@ public class JDBC {
 	public ArrayList<DTO> getTable(){
 
 		ArrayList<DTO> list = new ArrayList<DTO>();
-		DTO dto = new DTO();
-
+		
 		try {
 			res = statement.executeQuery("SELECT * FROM items");
 
 			while(res.next()){
+				DTO dto = new DTO();
 				dto.setName(res.getString("user"));
 				dto.setItem(res.getString("item"));
 				dto.setPrice(res.getInt("price"));
