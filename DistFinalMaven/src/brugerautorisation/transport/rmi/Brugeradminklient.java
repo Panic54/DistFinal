@@ -96,7 +96,7 @@ public class Brugeradminklient {
     public boolean buy(DTO d) {
     	DTO dto = d;
     		
-    	System.out.println("Du købte: " + d.getNames());
+    	System.out.println("Du købte: " + d.getName());
     	
     	return true;
     }
@@ -107,7 +107,7 @@ public class Brugeradminklient {
     public boolean sell(DTO d) {
     	DTO dto = d;
     	
-    	System.out.println("Du solgte: " + d.getNames() + " til prisen: " + d.getPrices());
+    	System.out.println("Du solgte: " + d.getName() + " til prisen: " + d.getPrice() + " og det var: " + d.getItem());
     	
     	return true;
     }
