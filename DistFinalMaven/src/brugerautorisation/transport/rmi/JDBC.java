@@ -30,27 +30,30 @@ public class JDBC {
 
 	public ArrayList<DTO> getTable(){
 
-		ArrayList<DTO> dto = new ArrayList<DTO>();
+		ArrayList<DTO> list = new ArrayList<DTO>();
+		DTO dto = new DTO();
 
 		try {
 			res = statement.executeQuery("SELECT * FROM items");
 
 			while(res.next()){
-				dto.add(new DTO(res.getString("user"), res.getString("item"), res.getInt("price")));
+				dto.setName(res.getString("user"));
+				dto.setItem(res.getString("item"));
+				dto.setPrice(res.getInt("price"));
+				list.add(dto);
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		return dto;
+		return list;
 	}
 
-	//Virker måske ikke?
 	public void addRow(String name, String item, int price){
 
 		try {
-			statement.execute("INSERT INTO items VALUES(" + name + ", " + item + ", " + price);
+			statement.execute("INSERT INTO items VALUES('" + name + "', '" + item + "', " + price + ")");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
