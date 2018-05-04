@@ -11,6 +11,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,10 +21,22 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+
+//
+// JWT imports
+//
+
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.SignatureException;
+import io.jsonwebtoken.impl.crypto.MacProvider;
+import java.security.Key;
+
 @Path("/rest2")
 public class Brugeradminklient {
 
     public Brugeradmin ba;
+    Key key = MacProvider.generateKey();
 
   //  public Brugeradminklient() {
     //}
@@ -62,9 +75,10 @@ public class Brugeradminklient {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public boolean login(DataTyper d) {
+    	
         Bruger b;
         //String username = "s154102", password = "abc123";
-        System.out.println(d.getUsername() + " " + d.getPassword());
+        //System.out.println(d.getUsername() + " " + d.getPassword());
         try {
             ba = (Brugeradmin) Naming.lookup("rmi://javabog.dk/brugeradmin");
         } catch (NotBoundException ex) {
@@ -86,8 +100,29 @@ public class Brugeradminklient {
         } catch (RemoteException ex) {
             Logger.getLogger(Brugeradminklient.class.getName()).log(Level.SEVERE, null, ex);
             return false;
-        }
+        }       
+        
         return true;
+    }
+    
+    @Path("/build")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String build(DataTyper d) {
+    	
+        //Laver JWT
+        String compactJws = Jwts.builder()
+        		.setSubject(d.getUsername())
+        		.signWith(SignatureAlgorithm.HS512, key)
+        		.compact();
+        
+        //Printer krypteret og ikke krypteret JWT ud...
+        System.out.println("\nKrypteret JWT: " + compactJws);
+        String decoded = Jwts.parser().setSigningKey(key).parse(compactJws).toString();
+        System.out.println("Dekrypteret JWT: " + decoded);
+        
+        return compactJws;
+    	
     }
     
     
@@ -113,6 +148,28 @@ public class Brugeradminklient {
 
     	
     	return true;
+    }
+    
+    @Path("/validate")
+    @POST
+    @Consumes(MediaType.TEXT_PLAIN)
+    public boolean JWT(String s) {
+    	
+    	System.out.println("token: " + s);
+    	
+    	try {
+
+    	    Jwts.parser().setSigningKey(key).parseClaimsJws(s);
+
+    	    //OK, we can trust this JWT
+    	    return true;
+
+    	} catch (SignatureException e) {
+
+    	    //don't trust the JWT!
+    		return false;
+    	}
+    	
     }
     
     

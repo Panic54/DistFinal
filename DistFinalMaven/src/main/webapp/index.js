@@ -8,20 +8,34 @@ $(document).ready(function() {
 		//event.preventDefault();
 
 		var data = $("#loginForm").serializeObject();
+		
 		$.ajax({
 			url: "rest/rest2/javabog",
 			data: JSON.stringify(data),
 			contentType: "application/json",
 			method: 'POST',
 			success: function(loginOk){
-                            if(loginOk){
-                                window.location.replace("/DistFinalMaven/Salg.html");                                
-                            }else{
-                                $('.login-error').show();
-                            }
+				if(loginOk){
+					$.ajax({
+						url: "rest/rest2/build",
+						data: JSON.stringify(data),
+                        contentType: "application/json",
+                        method: "POST",
+                        success: function(resp) {
+                        	alert(resp);
+                            sessionStorage.setItem("jwt", resp);
+                            window.location.replace("/DistFinalMaven/Salg.html");
+                        },
+                        error: function(resp) {
+                        	console.log("error: " + resp);
+                        }
+					}); 
+				} else {
+					$('.login-error').show();
+                }
 			},
 			error: function(resp){
-                            $('.login-error').show();
+				$('.login-error').show();
 			}
 		});
                 return false;

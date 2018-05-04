@@ -1,5 +1,23 @@
 $(document).ready(function() {
 		
+	alert(sessionStorage.getItem("jwt"));
+	
+	
+	$.ajax({
+		url: "rest/rest2/validate",
+		data: sessionStorage.getItem("jwt"),
+		contentType: "text/plain",
+		method: "POST",
+		success: function(resp) {
+			if (!resp) {
+				window.location.replace("/DistFinalMaven/");
+			}
+		},
+		error: function(resp) {
+			console.log("error: " + resp);
+		}
+	});
+	
 	$("#buy").click(function() {
 		
 		window.location.replace("http://localhost:8080/DistFinalMaven/Køb.html");
