@@ -1,0 +1,30 @@
+body {
+	background-color: #e6e6e6;
+}
+
+#container-bar {
+	position: relative;
+	width: auto;
+}
+
+#bar {
+	margin: auto;
+	text-align: center;
+}
+
+a {
+	margin: auto;
+	width: 50%;
+}
+
+
+#container {
+	position: relative;
+	margin: auto;
+	width: 100%;
+}
+
+ul {
+	margin: auto;
+	width: 100%;
+}

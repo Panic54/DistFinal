@@ -43,7 +43,7 @@ public class Brugeradminklient {
     @Path("/javabog")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public boolean login(DataTyper d) {
+    public Response login(DataTyper d) {
     	
         Bruger b;
         //String username = "s154102", password = "abc123";
@@ -52,13 +52,13 @@ public class Brugeradminklient {
             ba = (Brugeradmin) Naming.lookup("rmi://javabog.dk/brugeradmin");
         } catch (NotBoundException ex) {
             Logger.getLogger(Brugeradminklient.class.getName()).log(Level.SEVERE, null, ex);
-            return false;//Response.status(200).build();
+            return Response.status(Status.UNAUTHORIZED).build();//Response.status(200).build();
         } catch (MalformedURLException ex) {
             Logger.getLogger(Brugeradminklient.class.getName()).log(Level.SEVERE, null, ex);
-            return false;//Response.status(200).build();
+            return Response.status(Status.UNAUTHORIZED).build();//Response.status(200).build();
         } catch (RemoteException ex) {
             Logger.getLogger(Brugeradminklient.class.getName()).log(Level.SEVERE, null, ex);
-            return false;//Response.status(200).build();
+            return Response.status(Status.UNAUTHORIZED).build();//Response.status(200).build();
         }
 
         try {
@@ -68,10 +68,10 @@ public class Brugeradminklient {
             System.out.println("Data: " + Diverse.toString(b));
         } catch (RemoteException ex) {
             Logger.getLogger(Brugeradminklient.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
+            return Response.status(Status.UNAUTHORIZED).build();
         }       
         
-        return true;
+        return Response.status(Status.ACCEPTED).build();
     }
     
     @Path("/build")
@@ -101,19 +101,21 @@ public class Brugeradminklient {
     @Path("/buy")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public boolean buy(DTO d) {
+    public Response buy(DTO d) {
     	DTO dto = d;
 
     	System.out.println("Du k�bte: " + d.getName());
-
     	
-    	return true;
+    	JDBC jdbc = new JDBC();
+    	jdbc.deleteItem(d.getName(), d.getItem());
+    	
+    	return Response.status(Status.ACCEPTED).build();
     }
     
     @Path("/sell")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public boolean sell(DTO d) {
+    public Response sell(DTO d) {
     	//DTO dto = d;
     	
     	System.out.println("Du solgte: " + d.getName() + " til prisen: " + d.getPrice());
@@ -121,7 +123,7 @@ public class Brugeradminklient {
     	JDBC jdbc = new JDBC();
     	jdbc.addRow(d.getName(), d.getItem(), d.getPrice());
     	
-    	return true;
+    	return Response.status(Status.ACCEPTED).build();
     }
     
     @Path("/validate")

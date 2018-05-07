@@ -7,18 +7,19 @@ $(document).ready(function() {
 		//Prevent form from reseting on incorrect login credentials
 		//event.preventDefault();
 
-		var data = $("#loginForm").serializeObject();
+		var loginData = $("#loginForm").serializeObject();
 		
 		$.ajax({
 			url: "rest/rest2/javabog",
-			data: JSON.stringify(data),
+			data: JSON.stringify(loginData),
 			contentType: "application/json",
 			method: 'POST',
-			success: function(loginOk){
-				if(loginOk){
+			success: function(data, status, jqXHR){
+				alert(status);
+				if(status == "success"){
 					$.ajax({
 						url: "rest/rest2/build",
-						data: JSON.stringify(data),
+						data: JSON.stringify(loginData),
                         contentType: "application/json",
                         method: "POST",
                         success: function(resp) {
@@ -30,12 +31,12 @@ $(document).ready(function() {
                         	console.log("error: " + resp);
                         }
 					}); 
-				} else {
-					$('.login-error').show();
+				} else{
+					$('.login-error: ' + status).show();
                 }
 			},
-			error: function(resp){
-				$('.login-error').show();
+			error: function(data, status, jqXHR){
+				$('.login-error' + status).show();
 			}
 		});
                 return false;

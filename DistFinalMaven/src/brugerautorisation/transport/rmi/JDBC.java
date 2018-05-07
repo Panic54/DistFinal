@@ -58,6 +58,8 @@ public class JDBC implements JDBCI {
 
 	public void addRow(String name, String item, int price) {
 
+		//System.out.println("name: " + name + " item: " + item + " price: " + price);
+		
 		try {
 			statement.execute("INSERT INTO items VALUES('" + name + "', '" + item + "', " + price + ")");
 		} catch (SQLException e) {

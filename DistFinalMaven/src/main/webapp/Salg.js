@@ -34,7 +34,7 @@ $(document).ready(function() {
 	
 	$("#buy").click(function() {
 		
-		window.location.replace("http://localhost:8080/DistFinalMaven/Køb.html");
+		window.location.replace("/DistFinalMaven/Buy.html");
 		
 	});
 
