@@ -3,18 +3,22 @@ $(document).ready(function() {
 	//alert("token is: " + sessionStorage.getItem("jwt"));
 	
 	
+	if (sessionStorage.getItem("jwt") == null) {
+		
+	}
+	
 	$.ajax({
 		url: "rest/rest2/validate",
 		data: sessionStorage.getItem("jwt"),
 		contentType: "text/plain",
 		method: "POST",
-		success: function(data, textStatus, jqXHR) {
-			console.log("data: " + data + " textStatus: " + textStatus + " jqXHR:" + jqXHR);
-			if(textStatus == "forbidden") {
+		success: function(data, status, jqXHR) {
+			console.log("data: " + data + " status: " + status + " jqXHR:" + jqXHR);
+			if(status == "forbidden") {
 				console.log("Token not accepted!");
 				window.location.replace("/DistFinalMaven/");
 			}
-			else if (textStatus == "success") {
+			else if (status == "success") {
 				console.log("Token accepted.");
 			}
 			else {
@@ -22,8 +26,8 @@ $(document).ready(function() {
 				window.location.replace("/DistFinalMaven/");
 			}
 		},
-		error: function(resp) {
-			console.log("error: " + resp.status);
+		error: function(data, status, jqXHR) {
+			console.log("error: " + status);
 			window.location.replace("/DistFinalMaven/");
 		}
 	});

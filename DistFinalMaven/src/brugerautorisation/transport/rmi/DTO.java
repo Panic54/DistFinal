@@ -1,7 +1,5 @@
 package brugerautorisation.transport.rmi;
 
-import java.util.ArrayList;
-
 public class DTO {
 
 	private String name;

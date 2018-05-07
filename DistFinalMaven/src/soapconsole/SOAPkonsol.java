@@ -3,7 +3,7 @@ package soapconsole;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
-
+import brugerautorisation.transport.rmi.DTO;
 import javax.xml.ws.Service;
 
 import soapconsole.JDBCI;

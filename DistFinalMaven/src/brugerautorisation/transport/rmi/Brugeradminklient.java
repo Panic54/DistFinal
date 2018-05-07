@@ -117,7 +117,9 @@ public class Brugeradminklient {
     	//DTO dto = d;
     	
     	System.out.println("Du solgte: " + d.getName() + " til prisen: " + d.getPrice());
-
+    	
+    	JDBC jdbc = new JDBC();
+    	jdbc.addRow(d.getName(), d.getItem(), d.getPrice());
     	
     	return true;
     }

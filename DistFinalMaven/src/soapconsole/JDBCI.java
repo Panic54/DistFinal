@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
-import server.DTO;
+import brugerautorisation.transport.rmi.DTO;
 
 @WebService
 public interface JDBCI {
