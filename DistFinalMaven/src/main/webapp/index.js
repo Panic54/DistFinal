@@ -22,7 +22,7 @@ $(document).ready(function() {
                         contentType: "application/json",
                         method: "POST",
                         success: function(resp) {
-                        	alert(resp);
+                        	//alert("start/" + resp + "/end");
                             sessionStorage.setItem("jwt", resp);
                             window.location.replace("/DistFinalMaven/Salg.html");
                         },
