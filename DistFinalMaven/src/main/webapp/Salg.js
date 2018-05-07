@@ -1,6 +1,6 @@
 $(document).ready(function() {
 		
-	alert(sessionStorage.getItem("jwt"));
+	//alert("token is: " + sessionStorage.getItem("jwt"));
 	
 	
 	$.ajax({
@@ -8,13 +8,23 @@ $(document).ready(function() {
 		data: sessionStorage.getItem("jwt"),
 		contentType: "text/plain",
 		method: "POST",
-		success: function(resp) {
-			if (!resp) {
+		success: function(data, textStatus, jqXHR) {
+			console.log("data: " + data + " textStatus: " + textStatus + " jqXHR:" + jqXHR);
+			if(textStatus == "forbidden") {
+				console.log("Token not accepted!");
+				window.location.replace("/DistFinalMaven/");
+			}
+			else if (textStatus == "success") {
+				console.log("Token accepted.");
+			}
+			else {
+				console.log("An error occured.");
 				window.location.replace("/DistFinalMaven/");
 			}
 		},
 		error: function(resp) {
-			console.log("error: " + resp);
+			console.log("error: " + resp.status);
+			window.location.replace("/DistFinalMaven/");
 		}
 	});
 	

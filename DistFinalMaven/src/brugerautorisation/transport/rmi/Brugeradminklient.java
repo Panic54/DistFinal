@@ -20,7 +20,9 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
+import io.jsonwebtoken.Jwt;
 
 //
 // JWT imports
@@ -36,41 +38,8 @@ import java.security.Key;
 public class Brugeradminklient {
 
     public Brugeradmin ba;
-    Key key = MacProvider.generateKey();
+    static Key key = MacProvider.generateKey();
 
-  //  public Brugeradminklient() {
-    //}
-
-    /*
-	public static void main(String[] arg) throws Exception {
-//		Brugeradmin ba =(Brugeradmin) Naming.lookup("rmi://localhost/brugeradmin");
-		
-                Brugeradmin ba = (Brugeradmin) Naming.lookup("rmi://javabog.dk/brugeradmin");
-
-                Scanner scan = new Scanner(System.in);
-                      
-                String userName = scan.nextLine();
-                String passWord = scan.nextLine();
-                
-		Bruger b = ba.hentBruger(userName, passWord);
-                System.out.println(b.adgangskode);
-               
-		System.out.println("Fik bruger = " + b);
-		System.out.println("Data: " + Diverse.toString(b));
-                
-		 //ba.sendEmail("154102", "kodeomi6ag", "Hurra det virker!", "Jeg er så glad");
-                 /*
-		Object ekstraFelt = ba.getEkstraFelt("s123456", "kode1xyz", "hobby");
-		System.out.println("Brugerens hobby er: " + ekstraFelt);
-       
-                   //ba.sendGlemtAdgangskodeEmail("s154102", "Dette er en test, husk at skifte kode");
-		//ba.ændrAdgangskode("s154102", "abcd1234", "abc123");
-		ba.setEkstraFelt("s154102", "kodeomi6ag", "Intet", "Fritid"); // Skriv noget andet her
-
-		String webside = (String) ba.getEkstraFelt("s123456", "kode1xyz", "webside");
-		System.out.println("Brugerens webside er: " + webside);
-                 
-	} */
     @Path("/javabog")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -113,8 +82,11 @@ public class Brugeradminklient {
         //Laver JWT
         String compactJws = Jwts.builder()
         		.setSubject(d.getUsername())
+        	//	.setExpiration(time)
         		.signWith(SignatureAlgorithm.HS512, key)
         		.compact();
+        
+        System.out.println(key);
         
         //Printer krypteret og ikke krypteret JWT ud...
         System.out.println("\nKrypteret JWT: " + compactJws);
@@ -153,21 +125,32 @@ public class Brugeradminklient {
     @Path("/validate")
     @POST
     @Consumes(MediaType.TEXT_PLAIN)
-    public boolean JWT(String s) {
+    public Response JWT(String token) {
     	
-    	System.out.println("token: " + s);
+    	if (token.equals(null) || token.equals(""))
+    		return Response.status(Status.FORBIDDEN).build();
+    	
+    	System.out.println(token);
+    	System.out.println(key);
+    	
+    	//System.out.println("token: " + s);
+    	String subject = "HACKER";
     	
     	try {
 
-    	    Jwts.parser().setSigningKey(key).parseClaimsJws(s);
-
+    		//Hvis token ikke kan parses, da bliver der throwet en SignatureException
+    		subject = Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody().getSubject();
+    	  
+    		System.out.println(subject);
     	    //OK, we can trust this JWT
-    	    return true;
+    	    return Response.status(Status.ACCEPTED).build();
 
     	} catch (SignatureException e) {
 
+    		System.out.println("exception: " + e.getMessage());
+    		
     	    //don't trust the JWT!
-    		return false;
+    		return Response.status(Status.FORBIDDEN).build();
     	}
     	
     }
