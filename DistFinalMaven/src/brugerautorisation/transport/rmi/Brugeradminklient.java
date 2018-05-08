@@ -134,24 +134,24 @@ public class Brugeradminklient {
     	if (token.equals(null) || token.equals(""))
     		return Response.status(Status.FORBIDDEN).build();
     	
-    	System.out.println(token);
-    	System.out.println(key);
+//    	System.out.println(token);
+//    	System.out.println(key);
     	
     	//System.out.println("token: " + s);
-    	String subject = "HACKER";
+//    	String subject = "HACKER";
     	
     	try {
 
     		//Hvis token ikke kan parses, da bliver der throwet en SignatureException
-    		subject = Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody().getSubject();
+    		Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody().getSubject();
     	  
-    		System.out.println(subject);
+//    		System.out.println(subject);
     	    //OK, we can trust this JWT
     	    return Response.status(Status.ACCEPTED).build();
 
     	} catch (SignatureException e) {
 
-    		System.out.println("exception: " + e.getMessage());
+//    		System.out.println("exception: " + e.getMessage());
     		
     	    //don't trust the JWT!
     		return Response.status(Status.FORBIDDEN).build();
