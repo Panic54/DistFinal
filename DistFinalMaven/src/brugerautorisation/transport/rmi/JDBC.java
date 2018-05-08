@@ -18,7 +18,7 @@ public class JDBC implements JDBCI {
 	JDBC() {
 
 		try {
-
+			Class.forName("com.mysql.jdbc.Driver");
 			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gruppe50", "root", "");
 			statement = myConn.createStatement();
 
@@ -29,6 +29,9 @@ public class JDBC implements JDBCI {
 			// }
 
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

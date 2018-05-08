@@ -13,7 +13,7 @@ import javax.xml.namespace.QName;
 public class SOAPkonsol {
 
 	public static void main(String[] args) throws MalformedURLException {
-		URL url = new URL("http://ec2-18-188-46-76.us-east-2.compute.amazonaws.com:11111/JDBCxml?wsdl");
+		URL url = new URL("http://ec2-18-188-46-76.us-east-2.compute.amazonaws.com:11112/JDBCxml?wsdl");
 		QName qname = new QName("http://server/", "JDBCService");
 		Service service = Service.create(url, qname);
 		JDBCI data = service.getPort(JDBCI.class);
