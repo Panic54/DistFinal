@@ -210,6 +210,20 @@ public class Brugeradminklient {
     	
 		return name;
     }
+    @Path("/otherStuff")
+    @POST
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<DTO> GetOtherStuff(String token) {
+    	List<DTO> stuff = null;
+    	JDBCI jdbc = new JDBC();
+    	//Kan ikke returnere response, da vi returnerer en liste...
+    	String name = Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody().getSubject();
+    	System.out.println(name);
+    	stuff = jdbc.getOtherTable(name);
+    	
+		return stuff;
+    }
     
     
 }
