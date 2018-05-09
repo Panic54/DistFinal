@@ -20,7 +20,7 @@ $(document).ready(function() {
 			}
 			else if (status == "success") {
 				console.log("Token accepted.");
-				download();
+				download2();
 			}
 			else {
 				console.log("An error occured.");
@@ -43,7 +43,8 @@ $(document).ready(function() {
 //	alert($(this).text() + " value: " + $(this).val());
 //	});
 
-	function download() {
+	function download2() {
+		console.log("download kaldt i Buy.js");
 		$.ajax({
 			url: "rest/rest2/otherStuff",
 			data: sessionStorage.getItem("jwt"),
