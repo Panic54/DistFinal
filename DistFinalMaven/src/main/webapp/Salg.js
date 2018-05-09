@@ -8,8 +8,8 @@ $(document).ready(function() {
 		//Prevent form from reseting on incorrect login credentials
 		//event.preventDefault();
 		var name;
-		
-		name = getName(getCallBackData);
+		var result;
+		name = getName(getCallBackData(result));
 		console.log("name after callbackdata function: " + name);
 		
 		var itemData = $("#itemform").serializeObject();
