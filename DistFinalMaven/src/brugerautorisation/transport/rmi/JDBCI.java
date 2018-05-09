@@ -10,6 +10,12 @@ public interface JDBCI {
 
 	@WebMethod
 	ArrayList<DTO> getTable();
+	
+	@WebMethod
+	ArrayList<DTO> getYourTable(String name);
+	
+	@WebMethod
+	ArrayList<DTO> getOtherTable(String name);
 
 	@WebMethod
 	void addRow(String name, String item, int price);

@@ -58,6 +58,50 @@ public class JDBC implements JDBCI {
 
 		return list;
 	}
+	
+	public ArrayList<DTO> getYourTable(String name) {
+
+		ArrayList<DTO> list = new ArrayList<DTO>();
+
+		try {
+			res = statement.executeQuery("SELECT * FROM items WHERE user = '" + name +"'");
+
+			while (res.next()) {
+				DTO dto = new DTO();
+				dto.setName(res.getString("user"));
+				dto.setItem(res.getString("item"));
+				dto.setPrice(res.getInt("price"));
+				list.add(dto);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+	
+	public ArrayList<DTO> getOtherTable(String name) {
+
+		ArrayList<DTO> list = new ArrayList<DTO>();
+
+		try {
+			res = statement.executeQuery("SELECT * FROM items WHERE user <> '" + name +"'");
+
+			while (res.next()) {
+				DTO dto = new DTO();
+				dto.setName(res.getString("user"));
+				dto.setItem(res.getString("item"));
+				dto.setPrice(res.getInt("price"));
+				list.add(dto);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
 
 	public void addRow(String name, String item, int price) {
 

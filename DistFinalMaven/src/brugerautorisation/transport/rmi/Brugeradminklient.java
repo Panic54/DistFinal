@@ -12,12 +12,15 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -62,7 +65,7 @@ public class Brugeradminklient {
         }
 
         try {
-            b = ba.hentBruger(d.getUsername(), d.getPassword());
+        	b = ba.hentBruger(d.getUsername(), d.getPassword());
             System.out.println(b.adgangskode);
             System.out.println("Fik bruger = " + b);
             System.out.println("Data: " + Diverse.toString(b));
@@ -79,9 +82,32 @@ public class Brugeradminklient {
     @Consumes(MediaType.APPLICATION_JSON)
     public String build(DataTyper d) {
     	
+    	Bruger b = new Bruger();
+        //String username = "s154102", password = "abc123";
+        //System.out.println(d.getUsername() + " " + d.getPassword());
+        
+            try {
+				ba = (Brugeradmin) Naming.lookup("rmi://javabog.dk/brugeradmin");
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NotBoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            try {
+				b = ba.hentBruger(d.getUsername(), d.getPassword());
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	
         //Laver JWT
         String compactJws = Jwts.builder()
-        		.setSubject(d.getUsername())
+        		.setSubject(b.fornavn)
         	//	.setExpiration(time)
         		.signWith(SignatureAlgorithm.HS512, key)
         		.compact();
@@ -157,6 +183,20 @@ public class Brugeradminklient {
     		return Response.status(Status.FORBIDDEN).build();
     	}
     	
+    }
+    @Path("/yourStuff")
+    @POST
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<DTO> GetStuff(String token) {
+    	List<DTO> stuff = null;
+    	JDBCI jdbc = new JDBC();
+    	//Kan ikke returnere response, da vi returnerer en liste...
+    	String name = Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody().getSubject();
+    	System.out.println(name);
+    	stuff = jdbc.getYourTable(name);
+    	
+		return stuff;
     }
     
     
