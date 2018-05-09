@@ -42,6 +42,9 @@ $(document).ready(function() {
 //	$('ul#menu li').click(function(e) { 
 //	alert($(this).text() + " value: " + $(this).val());
 //	});
+	$('td').click(function() {
+		alert($(this).text() + " value: " + $(this).val());
+	});
 
 	function download() {
 		console.log("download kaldt i Buy.js");
