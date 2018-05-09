@@ -1,11 +1,12 @@
 $(document).ready(function() {
-		
+	var name = getName();
+	
 	//alert("token is: " + sessionStorage.getItem("jwt"));
 	$("#btn").click(function() {
 		
 		//Prevent form from reseting on incorrect login credentials
 		//event.preventDefault();
-		var name = getName();
+		
 		var itemData = $("#itemform").serializeObject();
 		
 		//creating final JSON object...
@@ -69,6 +70,8 @@ $(document).ready(function() {
 		
 	});
 	function getName() {
+		var result;
+		
 		$.ajax({
 			url: 			"rest/rest2/getName",
 			data: 			sessionStorage.getItem("jwt"),
@@ -77,12 +80,14 @@ $(document).ready(function() {
 			success:		function(data, status, jqXHR) {
 				console.log("success in get name.");
 				alert(data);
-				return data;
+				result = data;
 			},
 			error:			function(data, status, jqXHR) {
 				console.log("error in get name.");
 			}
+			
 		});
+		return result;
 	}
 	function download() {
 		$.ajax({
