@@ -5,15 +5,23 @@ $(document).ready(function() {
 		
 		//Prevent form from reseting on incorrect login credentials
 		//event.preventDefault();
-
+		var name = getName();
 		var itemData = $("#itemform").serializeObject();
+		
+		//creating final JSON object...
+		var obj = {
+				"name":name.name,
+				"item":itemData.item,
+				"price":itemData.price
+		};
 		
 		$.ajax({
 			url: "rest/rest2/sell",
-			data: JSON.stringify(itemData),
+			data: JSON.stringify(obj),
 			contentType: "application/json",
 			method: 'POST',
 			success: function(data, status, jqXHR){
+				download();
 				console.log("success, data: " + data, " status: " + status + " jqXHR: " + jqXHR);
 			},
 			error: function(data, status, jqXHR){
@@ -60,7 +68,22 @@ $(document).ready(function() {
 		window.location.replace("/DistFinalMaven/Buy.html");
 		
 	});
-	
+	function getName() {
+		$.ajax({
+			url: 			"rest/rest2/getName",
+			data: 			sessionStorage.getItem("jwt"),
+			contentType:	"text/plain",
+			method: 		"POST",
+			success:		function(data, status, jqXHR) {
+				console.log("success in get name.");
+				alert(data);
+				return data;
+			},
+			error:			function(data, status, jqXHR) {
+				console.log("error in get name.");
+			}
+		});
+	}
 	function download() {
 		$.ajax({
 			url: "rest/rest2/yourStuff",
@@ -76,7 +99,7 @@ $(document).ready(function() {
 			}
 		});
 	}
-
+	
 	function loadTable(users) {
 		
 		$('<tr>').append(

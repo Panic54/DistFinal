@@ -198,6 +198,19 @@ public class Brugeradminklient {
     	
 		return stuff;
     }
+    @Path("/getName")
+    @POST
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String GetName(String token) {
+
+    	//Kan ikke returnere response, da vi returnerer en liste...
+    	String name = Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody().getSubject();
+    	System.out.println(name);
+    	String jsonName = "{\"name\":\"" + name + "\"}";
+    	
+		return jsonName;
+    }
     
     
 }
