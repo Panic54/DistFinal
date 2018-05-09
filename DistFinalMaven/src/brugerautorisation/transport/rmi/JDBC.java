@@ -42,7 +42,7 @@ public class JDBC implements JDBCI {
 		ArrayList<DTO> list = new ArrayList<DTO>();
 
 		try {
-			res = statement.executeQuery("SELECT * FROM items");
+			res = statement.executeQuery("SELECT * FROM items ORDER BY user");
 
 			while (res.next()) {
 				DTO dto = new DTO();
@@ -86,7 +86,7 @@ public class JDBC implements JDBCI {
 		ArrayList<DTO> list = new ArrayList<DTO>();
 
 		try {
-			res = statement.executeQuery("SELECT * FROM items WHERE user <> '" + name +"'");
+			res = statement.executeQuery("SELECT * FROM items WHERE user <> '" + name +"' ORDER BY user");
 
 			while (res.next()) {
 				DTO dto = new DTO();

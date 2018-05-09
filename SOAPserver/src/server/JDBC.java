@@ -33,13 +33,14 @@ public class JDBC implements JDBCI {
 		}
 
 	}
+	
 
 	public ArrayList<DTO> getTable() {
 
 		ArrayList<DTO> list = new ArrayList<DTO>();
 
 		try {
-			res = statement.executeQuery("SELECT * FROM items");
+			res = statement.executeQuery("SELECT * FROM items ORDER BY user");
 
 			while (res.next()) {
 				DTO dto = new DTO();
@@ -65,6 +66,7 @@ public class JDBC implements JDBCI {
 		}
 
 	}
+	
 
 	@Override
 	public void close() {
