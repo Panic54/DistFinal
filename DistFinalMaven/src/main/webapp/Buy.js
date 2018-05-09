@@ -63,12 +63,14 @@ $(document).ready(function() {
 	function loadTable(users) {
 
 		$('<tr>').append(
+				$('<th>').text("Name"),
 				$('<th>').text("Item"),
 				$('<th>').text("Price")
 		).appendTo("#table");
 
 		$.each(users, function(i, item) {
 			$('<tr>').append(
+					$('<td>').text(item.name),
 					$('<td>').text(item.item),
 					$('<td>').text(item.price)
 			).appendTo("#table");
