@@ -44,7 +44,21 @@ $(document).ready(function() {
 //	});
 	
 	$(document).on("click", "tr", function(event) {
-		alert($(this).text() + " value: " + $(this).val());
+		if (!$(this).valueOf().includes("Name")) {				
+			if (confirm('Do you want to buy this item?'))
+			{
+				$.ajax({
+					url: "rest/rest2/buy",
+					data: sessionStorage.getItem("jwt"),
+					contentType: "text/plain",
+					method: "POST",
+					success: function(data, status, jqXHR) {					
+					},
+					error: function(data, status, jqXHR) {
+					}
+				});
+			}	
+		}		
 	});
 	
 //	$('tr').click(function() {
