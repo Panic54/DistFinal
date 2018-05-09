@@ -42,7 +42,7 @@ $(document).ready(function() {
 //	$('ul#menu li').click(function(e) { 
 //	alert($(this).text() + " value: " + $(this).val());
 //	});
-	$('td').click(function() {
+	$('tr').click(function() {
 		alert($(this).text() + " value: " + $(this).val());
 	});
 
