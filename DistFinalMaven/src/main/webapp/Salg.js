@@ -77,6 +77,7 @@ $(document).ready(function() {
 			data: 			sessionStorage.getItem("jwt"),
 			contentType:	"text/plain",
 			method: 		"POST",
+			async:			false,
 			success:		function(data, status, jqXHR) {
 				console.log("success in get name.");
 				alert(data);
