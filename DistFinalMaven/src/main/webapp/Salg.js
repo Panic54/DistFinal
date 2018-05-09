@@ -7,33 +7,31 @@ $(document).ready(function() {
 		
 		//Prevent form from reseting on incorrect login credentials
 		//event.preventDefault();
-		var name;
-		var result;
-		name = getName(getCallBackData(result));
-		console.log("name after callbackdata function: " + name);
-		
-		var itemData = $("#itemform").serializeObject();
-		
-		//creating final JSON object...
-		var obj = {
-				"name":name.valueOf(),
-				"item":itemData.item,
-				"price":itemData.price
-		};
-		
-		$.ajax({
-			url: "rest/rest2/sell",
-			data: JSON.stringify(obj),
-			contentType: "application/json",
-			method: 'POST',
-			success: function(data, status, jqXHR){
-				location.reload(true);
-				console.log("success, data: " + data, " status: " + status + " jqXHR: " + jqXHR);
-			},
-			error: function(data, status, jqXHR){
-				console.log("error, data: " + data, " status: " + status + " jqXHR: " + jqXHR);
-			}
-		});
+		getName(getCallBackData);
+		//console.log("name after callbackdata function: " + name);
+//		
+//		var itemData = $("#itemform").serializeObject();
+//		
+//		//creating final JSON object...
+//		var obj = {
+//				"name":name.valueOf(),
+//				"item":itemData.item,
+//				"price":itemData.price
+//		};
+//		
+//		$.ajax({
+//			url: "rest/rest2/sell",
+//			data: JSON.stringify(obj),
+//			contentType: "application/json",
+//			method: 'POST',
+//			success: function(data, status, jqXHR){
+//				location.reload(true);
+//				console.log("success, data: " + data, " status: " + status + " jqXHR: " + jqXHR);
+//			},
+//			error: function(data, status, jqXHR){
+//				console.log("error, data: " + data, " status: " + status + " jqXHR: " + jqXHR);
+//			}
+//		});
                 return false;
 	});
 	
@@ -79,7 +77,30 @@ $(document).ready(function() {
 		console.log("result from callbackdata: " + result);
 		var name = result;
 		console.log("name from callbackdata: " + name);
-		return name;
+		
+		var itemData = $("#itemform").serializeObject();
+		
+		//creating final JSON object...
+		var obj = {
+				"name":name.valueOf(),
+				"item":itemData.item,
+				"price":itemData.price
+		};
+		
+		$.ajax({
+			url: "rest/rest2/sell",
+			data: JSON.stringify(obj),
+			contentType: "application/json",
+			method: 'POST',
+			success: function(data, status, jqXHR){
+				location.reload(true);
+				console.log("success, data: " + data, " status: " + status + " jqXHR: " + jqXHR);
+			},
+			error: function(data, status, jqXHR){
+				console.log("error, data: " + data, " status: " + status + " jqXHR: " + jqXHR);
+			}
+		});
+		
 	}
 	
 	function getName(callbackData) {
