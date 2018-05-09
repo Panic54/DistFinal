@@ -10,6 +10,7 @@ $(document).ready(function() {
 		var name;
 		
 		name = getName(getCallBackData);
+		console.log("name after callbackdata function: " + name);
 		
 		var itemData = $("#itemform").serializeObject();
 		
@@ -75,7 +76,9 @@ $(document).ready(function() {
 	});
 	
 	function getCallBackData(result) {
+		console.log("result from callbackdata: " + result);
 		var name = result;
+		console.log("name from callbackdata: " + name);
 		return name;
 	}
 	
