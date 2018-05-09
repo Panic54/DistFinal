@@ -1,11 +1,15 @@
 $(document).ready(function() {
-	var name = getName();
+
+	
 	
 	//alert("token is: " + sessionStorage.getItem("jwt"));
 	$("#btn").click(function() {
 		
 		//Prevent form from reseting on incorrect login credentials
 		//event.preventDefault();
+		var name;
+		
+		name = getName(getCallBackData);
 		
 		var itemData = $("#itemform").serializeObject();
 		
@@ -69,27 +73,31 @@ $(document).ready(function() {
 		window.location.replace("/DistFinalMaven/Buy.html");
 		
 	});
-	function getName() {
-		var result;
-		
+	
+	function getCallBackData(result) {
+		var name = result;
+		return name;
+	}
+	
+	function getName(callbackData) {
 		$.ajax({
 			url: 			"rest/rest2/getName",
 			data: 			sessionStorage.getItem("jwt"),
 			contentType:	"text/plain",
 			method: 		"POST",
 			async:			false,
-			success:		function(data, status, jqXHR) {
-				console.log("success in get name.");
-				alert(data);
-				result = data;
-			},
+			success:		callbackData,		
+				//function(data, status, jqXHR) {
+				//console.log("success in get name.");
+				//alert(data);
+				//callbackData = data;
 			error:			function(data, status, jqXHR) {
 				console.log("error in get name.");
-			}
-			
+			}			
 		});
-		return result;
+		//return callbackData;
 	}
+	
 	function download() {
 		$.ajax({
 			url: "rest/rest2/yourStuff",
