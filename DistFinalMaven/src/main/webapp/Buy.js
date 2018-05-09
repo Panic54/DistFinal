@@ -45,7 +45,7 @@ $(document).ready(function() {
 	
 	function download() {
 		$.ajax({
-			url: "rest/rest2/yourStuff",
+			url: "rest/rest2/otherStuff",
 			data: sessionStorage.getItem("jwt"),
 			contentType: "text/plain",
 			method: "POST",
