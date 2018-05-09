@@ -207,9 +207,8 @@ public class Brugeradminklient {
     	//Kan ikke returnere response, da vi returnerer en liste...
     	String name = Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody().getSubject();
     	System.out.println(name);
-    	String jsonName = "{\"name\":\"" + name + "\"}";
     	
-		return jsonName;
+		return name;
     }
     
     

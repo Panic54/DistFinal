@@ -10,7 +10,7 @@ $(document).ready(function() {
 		
 		//creating final JSON object...
 		var obj = {
-				"name":name.name,
+				"name":name,
 				"item":itemData.item,
 				"price":itemData.price
 		};
