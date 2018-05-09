@@ -19,8 +19,8 @@ $(document).ready(function() {
 				window.location.replace("/DistFinalMaven/");
 			}
 			else if (status == "success") {
-				console.log("Token accepted.");
-				download2();
+				console.log("Token i buy accepted.");
+				download();
 			}
 			else {
 				console.log("An error occured.");
@@ -43,7 +43,7 @@ $(document).ready(function() {
 //	alert($(this).text() + " value: " + $(this).val());
 //	});
 
-	function download2() {
+	function download() {
 		console.log("download kaldt i Buy.js");
 		$.ajax({
 			url: "rest/rest2/otherStuff",
