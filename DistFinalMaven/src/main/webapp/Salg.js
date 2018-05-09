@@ -21,7 +21,7 @@ $(document).ready(function() {
 			contentType: "application/json",
 			method: 'POST',
 			success: function(data, status, jqXHR){
-				download();
+				location.reload(true);
 				console.log("success, data: " + data, " status: " + status + " jqXHR: " + jqXHR);
 			},
 			error: function(data, status, jqXHR){

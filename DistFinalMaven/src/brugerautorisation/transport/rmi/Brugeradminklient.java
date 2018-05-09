@@ -201,7 +201,7 @@ public class Brugeradminklient {
     @Path("/getName")
     @POST
     @Consumes(MediaType.TEXT_PLAIN)
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     public String GetName(String token) {
 
     	//Kan ikke returnere response, da vi returnerer en liste...
