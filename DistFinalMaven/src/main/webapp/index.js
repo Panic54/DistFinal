@@ -15,7 +15,7 @@ $(document).ready(function() {
 			contentType: "application/json",
 			method: 'POST',
 			success: function(data, status, jqXHR){
-				alert(status);
+				console.log(status);
 				if(status == "success"){
 					$.ajax({
 						url: "rest/rest2/build",

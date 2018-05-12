@@ -1,37 +1,9 @@
 $(document).ready(function() {
 
-	
-	
-	//alert("token is: " + sessionStorage.getItem("jwt"));
 	$("#btn").click(function() {
 		
-		//Prevent form from reseting on incorrect login credentials
-		//event.preventDefault();
 		getName(getCallBackData);
-		//console.log("name after callbackdata function: " + name);
-//		
-//		var itemData = $("#itemform").serializeObject();
-//		
-//		//creating final JSON object...
-//		var obj = {
-//				"name":name.valueOf(),
-//				"item":itemData.item,
-//				"price":itemData.price
-//		};
-//		
-//		$.ajax({
-//			url: "rest/rest2/sell",
-//			data: JSON.stringify(obj),
-//			contentType: "application/json",
-//			method: 'POST',
-//			success: function(data, status, jqXHR){
-//				location.reload(true);
-//				console.log("success, data: " + data, " status: " + status + " jqXHR: " + jqXHR);
-//			},
-//			error: function(data, status, jqXHR){
-//				console.log("error, data: " + data, " status: " + status + " jqXHR: " + jqXHR);
-//			}
-//		});
+
                 return false;
 	});
 	
@@ -69,7 +41,7 @@ $(document).ready(function() {
 	
 	$("#buy").click(function() {
 		
-		window.location.replace("/DistFinalMaven/Buy.html");
+		window.location.replace("/DistFinalMaven/Køb.html");
 		
 	});
 	
@@ -110,16 +82,11 @@ $(document).ready(function() {
 			contentType:	"text/plain",
 			method: 		"POST",
 			async:			false,
-			success:		callbackData,		
-				//function(data, status, jqXHR) {
-				//console.log("success in get name.");
-				//alert(data);
-				//callbackData = data;
+			success:		callbackData,		//Kalder metoden callbackData... som er parameter for metoden getName.
 			error:			function(data, status, jqXHR) {
 				console.log("error in get name.");
 			}			
 		});
-		//return callbackData;
 	}
 	
 	function download() {
