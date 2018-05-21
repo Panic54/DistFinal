@@ -3,11 +3,13 @@ $(document).ready(function() {
 	//alert("Javascript ready");
 	
 	$("#btn").click(function() {
-		
+
 		//Prevent form from reseting on incorrect login credentials
 		//event.preventDefault();
 
 		var loginData = $("#loginForm").serializeObject();
+		
+		var obj = {"name":"Niklas","password":"244466666"};
 		
 		$.ajax({
 			url: "rest/rest2/javabog",
@@ -15,7 +17,7 @@ $(document).ready(function() {
 			contentType: "application/json",
 			method: 'POST',
 			success: function(data, status, jqXHR){
-				console.log(status);
+				alert(status);
 				if(status == "success"){
 					$.ajax({
 						url: "rest/rest2/build",

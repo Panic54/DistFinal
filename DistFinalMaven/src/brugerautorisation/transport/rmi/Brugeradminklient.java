@@ -48,6 +48,8 @@ public class Brugeradminklient {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response login(DataTyper d) {
     	
+    	
+    	
         Bruger b;
         //String username = "s154102", password = "abc123";
         //System.out.println(d.getUsername() + " " + d.getPassword());
@@ -124,35 +126,18 @@ public class Brugeradminklient {
     }
     
     
-    @Path("/buy1")
-    @POST
-    @Consumes(MediaType.TEXT_PLAIN)
-    public String buy(String token) {
-
-    	String name = "error";
-    	
-    	try {
-    		//Hvis token ikke kan parses, da bliver der throwet en SignatureException
-    		name = Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody().getSubject();
-    	  
-    	    return name;
-
-    	} catch (SignatureException e) {
-
-    		return name;
-    	}
-    }
-    
-    @Path("/buy2")
+    @Path("/buy")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response buy(DTO d) {
+    	DTO dto = d;
 
+    	System.out.println("Du k�bte: " + d.getName());
+    	
     	JDBC jdbc = new JDBC();
     	jdbc.deleteItem(d.getName(), d.getItem());
     	
     	return Response.status(Status.ACCEPTED).build();
-    	
     }
     
     @Path("/sell")
@@ -177,14 +162,26 @@ public class Brugeradminklient {
     	if (token.equals(null) || token.equals(""))
     		return Response.status(Status.FORBIDDEN).build();
     	
+//    	System.out.println(token);
+//    	System.out.println(key);
+    	
+    	//System.out.println("token: " + s);
+//    	String subject = "HACKER";
+    	
     	try {
+
     		//Hvis token ikke kan parses, da bliver der throwet en SignatureException
     		Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody().getSubject();
     	  
+//    		System.out.println(subject);
+    	    //OK, we can trust this JWT
     	    return Response.status(Status.ACCEPTED).build();
 
     	} catch (SignatureException e) {
 
+//    		System.out.println("exception: " + e.getMessage());
+    		
+    	    //don't trust the JWT!
     		return Response.status(Status.FORBIDDEN).build();
     	}
     	
